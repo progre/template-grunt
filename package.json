@@ -1,0 +1,13 @@
+{
+  "name": "application-name",
+  "version": "0.0.1",
+  "private": true,
+  "main": "server.js",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "matchdep": "*",
+    "grunt": "*",
+    "grunt-contrib-watch": "*"
+  }
+}
