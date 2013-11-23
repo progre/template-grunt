@@ -1,8 +1,9 @@
 module.exports = function(grunt) {
-  grunt.initConfig({
-    pkg: grunt.file.readJSON('package.json'),
+  var config = {
     watch: {
     }
-  });
+  };
+  config.pkg = grunt.file.readJSON('package.json');
+  grunt.initConfig(config);
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 };
