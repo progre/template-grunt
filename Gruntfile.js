@@ -1,9 +1,11 @@
 module.exports = function(grunt) {
-  var config = {
+  var projectConfig = {
     watch: {
     }
   };
-  config.pkg = grunt.file.readJSON('package.json');
-  grunt.initConfig(config);
+  grunt.initConfig({
+    pkg: grunt.file.readJSON('package.json'),
+    watch: projectConfig.watch
+  });
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 };
