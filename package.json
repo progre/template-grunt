@@ -12,12 +12,13 @@
     "grunt-exec": "*",
     "grunt-contrib-jade": "*",
     "grunt-contrib-stylus": "*",
-    "grunt-rename": "*",
     "grunt-typescript": "*",
+    "grunt-rename": "*",
+    "grunt-contrib-copy": "*",
     "grunt-contrib-requirejs": "*",
     "grunt-contrib-connect": "*",
     "grunt-contrib-watch": "*",
-    "grunt-contrib-copy": "*",
+    "grunt-contrib-clean": "*",
     "tsd": "git://github.com/DefinitelyTyped/tsd/#0.5.2-alpha.8"
   }
 }

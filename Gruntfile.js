@@ -111,6 +111,9 @@ module.exports = function(grunt) {
           livereload: true
         }
       }
+    },
+    clean: {
+      dist: ['dist/*']
     }
   });
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
@@ -128,6 +131,7 @@ module.exports = function(grunt) {
   ]);
   grunt.registerTask('deploy', [
     'release-build',
+    'clean:dist',
     'copy:deploy'
   ]);
   grunt.registerTask('tsd-reinstall-o', [
