@@ -1,1 +1,9 @@
 node_modules/
+dist/
+*.js
+*.css
+*.html
+*.map
+
+!Gruntfile.js
+!public/javascript/config.js

@@ -9,6 +9,14 @@
   "devDependencies": {
     "matchdep": "*",
     "grunt": "*",
-    "grunt-contrib-watch": "*"
+    "grunt-exec": "*",
+    "grunt-contrib-jade": "*",
+    "grunt-contrib-stylus": "*",
+    "grunt-typescript": "*",
+    "grunt-contrib-requirejs": "*",
+    "grunt-contrib-connect": "*",
+    "grunt-contrib-watch": "*",
+    "grunt-contrib-copy": "*",
+    "tsd": "git://github.com/DefinitelyTyped/tsd/#0.5.2-alpha.8"
   }
 }
