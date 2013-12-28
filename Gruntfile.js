@@ -1,12 +1,5 @@
 module.exports = function(grunt) {
   var tsdExec = 'node node_modules/tsd/build/cli.js ';
-  var jadeFiles = grunt.file.expandMapping(
-    ['src/public/**/*.jade'], 'public/', {
-      rename: function(destBase, destPath) {
-        return destBase + destPath.replace(/^src\/public\//, '').replace(/\.jade$/, ".html");
-      }
-    }
-  );
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     exec: {
@@ -23,11 +16,8 @@ module.exports = function(grunt) {
       }
     },
     jade: {
-      release: {
-        files: jadeFiles
-      },
+      release: {},
       debug: {
-        files: jadeFiles,
         options: {
           data: {
             debug: true
@@ -105,7 +95,7 @@ module.exports = function(grunt) {
     watch: {
       jade: {
         files: ['src/public/**/*.jade'],
-        tasks: ['jade:debug']
+        tasks: ['configure-jade', 'jade:debug']
       },
       stylus: {
         files: ['src/public/**/*.styl'],
@@ -144,12 +134,14 @@ module.exports = function(grunt) {
     'exec:tsd-reinstall-overwrite'
   ]);
   grunt.registerTask('debug-build', [
+    'configure-jade',
     'jade:debug',
     'stylus',
     'exec:tsd-reinstall',
     'build-typescript'
   ]);
   grunt.registerTask('release-build', [
+    'configure-jade',
     'jade:release',
     'stylus',
     'build-typescript',
@@ -170,6 +162,17 @@ module.exports = function(grunt) {
         }
       }
     )));
+  });
+  grunt.registerTask('configure-jade', function() {
+    var jadeFiles = grunt.file.expandMapping(
+      ['src/public/**/*.jade'], 'public/', {
+        rename: function(destBase, destPath) {
+          return destBase + destPath.replace(/^src\/public\//, '').replace(/\.jade$/, ".html");
+        }
+      }
+    );
+    grunt.config('jade.release.files', jadeFiles);
+    grunt.config('jade.debug.files', jadeFiles);
   });
 };
 
