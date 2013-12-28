@@ -8,3 +8,4 @@ public/**/*.ts
 
 !Gruntfile.js
 !public/javascript/config.js
+!public/javascript/vendor/**

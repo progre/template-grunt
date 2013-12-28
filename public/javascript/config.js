@@ -1,8 +1,7 @@
 require.config({
   paths: {
-    'linqjs': 'vendor/linq.min'
+    'linqjs': 'vendor/linq.min',
+    'es6-shim': 'vendor/es6-shim'
   },
-  shim: {
-  },
-  deps: ['main']
+  deps: ['main', 'es6-shim']
 });
