@@ -1,8 +1,9 @@
 {
-  "name": "application-name",
-  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/progre/template-grunt"
+  },
   "private": true,
-  "main": "server.js",
   "dependencies": {
   },
   "devDependencies": {
