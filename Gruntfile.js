@@ -48,12 +48,35 @@ module.exports = function(grunt) {
     typescript: {
       base: {
         src: ['src/public/**/*.ts'],
-        dest: './',
+        dest: 'src/public/',
         options: {
           module: 'amd',
-          base_path: 'src',
+          base_path: 'src/public',
           sourcemap: true
         }
+      }
+    },
+    copy: {
+      typescript: {
+        files: [{
+          expand: true,
+          cwd: 'src/public/',
+          src: ['**/*.ts'],
+          dest: 'public/',
+          filter: 'isFile'
+        }]
+      },
+      deploy: {
+        files: [{
+          expand: true,
+          cwd: 'public/',
+          src: [
+            '**',
+            '!**/*.map', '!javascript/**'
+          ],
+          dest: 'dist/',
+          filter: 'isFile'
+        }]
       }
     },
     requirejs: {
@@ -90,27 +113,13 @@ module.exports = function(grunt) {
       },
       typescript: {
         files: ['src/public/**/*.ts'],
-        tasks: ['typescript']
+        tasks: ['build-typescript']
       },
       public: {
         files: ['public/**/*.*'],
         options: {
           livereload: true
         }
-      }
-    },
-    copy: {
-      deploy: {
-        files: [{
-          expand: true,
-          cwd: 'public/',
-          src: [
-            '**',
-            '!**/*.map', '!javascript/**'
-          ],
-          dest: 'dist/',
-          filter: 'isFile'
-        }]
       }
     }
   });
@@ -129,7 +138,7 @@ module.exports = function(grunt) {
   ]);
   grunt.registerTask('deploy', [
     'release-build',
-    'copy'
+    'copy:deploy'
   ]);
   grunt.registerTask('tsd-reinstall-o', [
     'exec:tsd-reinstall-overwrite'
@@ -138,13 +147,36 @@ module.exports = function(grunt) {
     'jade:debug',
     'stylus',
     'exec:tsd-reinstall',
-    'typescript'
+    'build-typescript'
   ]);
   grunt.registerTask('release-build', [
     'jade:release',
     'stylus',
-    'typescript',
+    'build-typescript',
     'exec:tsd-reinstall',
     'requirejs'
   ]);
+  grunt.registerTask('build-typescript', [
+    'typescript',
+    'configure-rename',
+    'rename',
+    'copy:typescript'
+  ]);
+  grunt.registerTask('configure-rename', function() {
+    grunt.config('rename', toObject(grunt.file.expandMapping(
+      ['src/public/**/*.js', 'src/public/**/*.js.map'], 'public/', {
+        rename: function(destBase, destPath) {
+          return destBase + destPath.replace(/^src\/public\//, '');
+        }
+      }
+    )));
+  });
 };
+
+function toObject(array) {
+  var obj = {};
+  array.forEach(function(item, i) {
+    obj[i] = item;
+  });
+  return obj;
+}

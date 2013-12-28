@@ -12,6 +12,7 @@
     "grunt-exec": "*",
     "grunt-contrib-jade": "*",
     "grunt-contrib-stylus": "*",
+    "grunt-rename": "*",
     "grunt-typescript": "*",
     "grunt-contrib-requirejs": "*",
     "grunt-contrib-connect": "*",
