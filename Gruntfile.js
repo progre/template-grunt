@@ -155,24 +155,25 @@ module.exports = function(grunt) {
     'copy:typescript'
   ]);
   grunt.registerTask('configure-rename', function() {
-    grunt.config('rename', toObject(grunt.file.expandMapping(
+    var files = grunt.file.expandMapping(
       ['src/public/**/*.js', 'src/public/**/*.js.map'], 'public/', {
         rename: function(destBase, destPath) {
           return destBase + destPath.replace(/^src\/public\//, '');
         }
       }
-    )));
+    );
+    grunt.config('rename', toObject(files));
   });
   grunt.registerTask('configure-jade', function() {
-    var jadeFiles = grunt.file.expandMapping(
+    var files = grunt.file.expandMapping(
       ['src/public/**/*.jade'], 'public/', {
         rename: function(destBase, destPath) {
           return destBase + destPath.replace(/^src\/public\//, '').replace(/\.jade$/, ".html");
         }
       }
     );
-    grunt.config('jade.release.files', jadeFiles);
-    grunt.config('jade.debug.files', jadeFiles);
+    grunt.config('jade.release.files', files);
+    grunt.config('jade.debug.files', files);
   });
 };
 
