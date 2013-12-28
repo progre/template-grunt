@@ -6,6 +6,12 @@
   "installed": {
     "jquery/jquery.d.ts": {
       "commit": "7469c06f428ff7275ade4b48f82d473e8e1eb9a0"
+    },
+    "angularjs/angular.d.ts": {
+      "commit": "7469c06f428ff7275ade4b48f82d473e8e1eb9a0"
+    },
+    "angularjs/angular-route.d.ts": {
+      "commit": "7469c06f428ff7275ade4b48f82d473e8e1eb9a0"
     }
   }
 }

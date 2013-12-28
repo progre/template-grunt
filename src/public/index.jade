@@ -13,11 +13,22 @@ header.navbar.navbar-inverse.navbar-fixed-top(role='navigation')
   .collapse.navbar-collapse
     ul.nav.navbar-nav
 main
+  div(ng-view)
+    div(style='text-align: center; margin: 40px auto; font-size: 24px')
+      | ⏳
   #push
 footer.navbar.navbar-default
 script(src='//s3.amazonaws.com/es6-promises/promise-0.1.1.min.js')
 script(src='//code.jquery.com/jquery-2.0.3.min.js')
 script(src='//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js')
+if debug
+  script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.js')
+  script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular-route.js')
+  script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular-animate.js')
+else
+  script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js')
+  script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular-route.min.js')
+  script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular-animate.min.js')
 if debug
   script(src='//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.8/require.min.js', data-main='javascript/config')
   script(src='//localhost:35729/livereload.js')
