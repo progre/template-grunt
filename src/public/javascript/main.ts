@@ -4,14 +4,17 @@
 /// <reference path="../../typings/angularjs/angular.d.ts"/>
 /// <reference path="../../typings/angularjs/angular-route.d.ts"/>
 
+var root = '/';
+
 var app = angular.module('app', ['ngRoute', 'ngAnimate']);
-app.config(['$routeProvider',
-    ($routeProvider: ng.route.IRouteProvider) => {
+app.config(['$routeProvider', '$locationProvider',
+    ($routeProvider: ng.route.IRouteProvider, $locationProvider: ng.ILocationProvider) => {
+        $locationProvider.html5Mode(true);
         $routeProvider
-            .when('/', {
-                templateUrl: 'html/index.html', controller: 'IndexController'
+            .when(root, {
+                templateUrl: root + 'html/index.html', controller: 'IndexController'
             }).otherwise({
-                templateUrl: 'html/404.html'
+                templateUrl: root + 'html/404.html'
             });
     }
 ]);

@@ -2,7 +2,7 @@ doctype html
 meta(charset='utf-8')
 title
 link(rel='stylesheet', href='//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css')
-link(rel='stylesheet', href='css/style.css')
+link(rel='stylesheet', href='#{root}css/style.css')
 header.navbar.navbar-inverse.navbar-fixed-top(role='navigation')
   .navbar-header
     button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
@@ -30,7 +30,7 @@ else
   script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular-route.min.js')
   script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular-animate.min.js')
 if debug
-  script(src='//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.8/require.min.js', data-main='javascript/config')
+  script(src='//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.8/require.min.js', data-main='#{root}javascript/config')
   script(src='//localhost:35729/livereload.js')
 else
-  script(src='//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.8/require.min.js', data-main='js/main')
+  script(src='//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.8/require.min.js', data-main='#{root}js/main')

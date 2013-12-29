@@ -1,13 +1,26 @@
+var modRewrite = require('connect-modrewrite');
+
+var projectConfig = {
+  root: '/'
+};
+
 module.exports = function(grunt) {
   require('jit-grunt')(grunt);
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     jade: {
-      release: {},
+      release: {
+        options: {
+          data: {
+            root: projectConfig.root
+          }
+        }
+      },
       debug: {
         options: {
           data: {
+            root: projectConfig.root,
             debug: true
           }
         }
@@ -85,7 +98,17 @@ module.exports = function(grunt) {
     connect: {
       server: {
         options: {
-          base: 'public'
+          base: 'public',
+          middleware: function(connect, options) {
+            return [
+              modRewrite(['^' + projectConfig.root + '(?!html/).*\\.html$ /index.html [L]']),
+              projectConfig.root === '/' ? connect.static(options.base)
+                : function(req, res, next) {
+                  req.url = req.url.replace(new RegExp('^' + projectConfig.root), '/');
+                  return connect.static(options.base)(req, res, next);
+                }
+            ];
+          }
         }
       },
       keepalive: {

@@ -16,6 +16,7 @@
     "grunt-contrib-copy": "*",
     "grunt-contrib-requirejs": "*",
     "grunt-contrib-connect": "*",
+    "connect-modrewrite": "*",
     "grunt-contrib-watch": "*",
     "grunt-contrib-clean": "*",
     "grunt-tsd": "*",
