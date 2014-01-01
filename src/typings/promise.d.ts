@@ -5,7 +5,7 @@ declare class Promise {
     static all(array: any[]): any;
     static race(array: any[]): any;
 
-    constructor(func: (resolve: Function, relect: Function) => void);
+    constructor(func: (resolve: Function, reject: Function) => void);
 
     then(onFulfilled: Function, onRejected?: Function);
     catch(onRejected: Function);
