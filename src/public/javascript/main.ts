@@ -25,19 +25,19 @@ app.config(['$routeProvider', '$locationProvider',
 app.controller('IndexController', [
     () => {
         var loadQueue = new createjs.LoadQueue();
-        loadQueue.loadManifest([root + 'img/loading.gif'], true);
+        loadQueue.loadManifest([root + 'img/loading.png'], true);
         loadQueue.on('complete', (e: any) => {
             var stage = new createjs.Stage(<HTMLCanvasElement>$('#main')[0]);
-            var sprite = new createjs.Sprite(new createjs.SpriteSheet({
-                images: [loadQueue.getResult(root + 'img/loading.gif')],
-                frames: { width: 32, height: 32, regX: 16, regY: 16 },
-                animations: { default: [0, 17, true, 1 / 4] }
-            }), 'default');
-            sprite.x = 960 / 2;
-            sprite.y = 540 / 2;
-            stage.addChild(sprite);
+            var bitmap = new createjs.Bitmap(
+                loadQueue.getResult(root + 'img/loading.png'));
+            bitmap.regX = 16;
+            bitmap.regY = 16;
+            bitmap.x = 960 / 2;
+            bitmap.y = 540 / 2;
+            stage.addChild(bitmap);
             createjs.Ticker.timingMode = createjs.Ticker.RAF;
             createjs.Ticker.on('tick', () => {
+                bitmap.rotation += 7;
                 stage.update();
             });
         });
