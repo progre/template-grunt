@@ -28,7 +28,7 @@ app.controller('IndexController', [
         loadQueue.loadManifest([root + 'img/loading.png'], true);
         loadQueue.on('complete', (e: any) => {
             var stage = new createjs.Stage(<HTMLCanvasElement>$('#main')[0]);
-            var bitmap = new createjs.Bitmap(
+            var bitmap = new createjs.Bitmap(<HTMLImageElement>
                 loadQueue.getResult(root + 'img/loading.png'));
             bitmap.regX = 16;
             bitmap.regY = 16;
