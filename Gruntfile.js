@@ -4,6 +4,17 @@ var projectConfig = {
   root: '/'
 };
 
+function rewriteMiddleware(connect, options) {
+  return [
+    modRewrite(['^' + projectConfig.root + '(?!html/).*\\.html$ /index.html [L]']),
+    projectConfig.root === '/' ? connect.static(options.base)
+      : function(req, res, next) {
+        req.url = req.url.replace(new RegExp('^' + projectConfig.root), '/');
+        return connect.static(options.base)(req, res, next);
+      }
+  ];
+}
+
 module.exports = function(grunt) {
   require('jit-grunt')(grunt);
 
@@ -99,21 +110,13 @@ module.exports = function(grunt) {
       server: {
         options: {
           base: 'public',
-          middleware: function(connect, options) {
-            return [
-              modRewrite(['^' + projectConfig.root + '(?!html/).*\\.html$ /index.html [L]']),
-              projectConfig.root === '/' ? connect.static(options.base)
-                : function(req, res, next) {
-                  req.url = req.url.replace(new RegExp('^' + projectConfig.root), '/');
-                  return connect.static(options.base)(req, res, next);
-                }
-            ];
-          }
+          middleware: rewriteMiddleware
         }
       },
       keepalive: {
         options: {
           base: 'public',
+          middleware: rewriteMiddleware,
           keepalive: true
         }
       }
@@ -139,7 +142,10 @@ module.exports = function(grunt) {
       }
     },
     clean: {
-      dist: ['dist/*']
+      dist: ['dist/*'],
+      options: {
+        force: true
+      }
     }
   });
 
