@@ -8,6 +8,8 @@
 /// <reference path="../../typings/tweenjs/tweenjs.d.ts"/>
 /// <reference path="../../typings/preloadjs/preloadjs.d.ts"/>
 /// <reference path="../../typings/soundjs/soundjs.d.ts"/>
+import load = require('./lib/load/load');
+import mainLoop = require('./lib/mainloop/mainloop');
 
 var root = '/';
 
@@ -25,23 +27,13 @@ app.config(['$routeProvider', '$locationProvider',
 ]);
 app.controller('IndexController', [
     () => {
-        var loadQueue = new createjs.LoadQueue();
-        loadQueue.loadManifest([root + 'img/loading.png'], true);
-        loadQueue.on('complete', (e: any) => {
-            var stage = new createjs.Stage(<HTMLCanvasElement>$('#main')[0]);
-            var bitmap = new createjs.Bitmap(<HTMLImageElement>
-                loadQueue.getResult(root + 'img/loading.png'));
-            bitmap.regX = 16;
-            bitmap.regY = 16;
-            bitmap.x = 960 / 2;
-            bitmap.y = 540 / 2;
-            stage.addChild(bitmap);
-            createjs.Ticker.timingMode = createjs.Ticker.RAF;
-            createjs.Ticker.on('tick', () => {
-                bitmap.rotation += 7;
-                stage.update();
-            });
-        });
+        var stage = new createjs.Stage(<HTMLCanvasElement>$('#main')[0]);
+        load(stage, [])
+            .then(() => {
+            })
+            .catch(e => console.error(e.message, e));
+        mainLoop(() => {
+        }, stage);
     }
 ]);
 
