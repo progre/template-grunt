@@ -5,12 +5,12 @@ import mainLoop = require('../mainloop/mainloop');
 
 export = load;
 function load(stage: createjs.Stage, manifest: Object[], options: any = {}) {
-    options.basePath = 'img/';
-    options.preWait = 500;
-    options.fadeTime = 500;
-    options.debug = false;
-    options.centerImage = 'brand.png';
-    options.rotateImage = 'loading.png';
+    if (options.basePath == null) options.basePath = '';
+    if (options.preWait == null) options.preWait = 500;
+    if (options.fadeTime == null) options.fadeTime = 500;
+    if (options.debug == null) options.debug = false;
+    if (options.centerImage == null) options.centerImage = 'img/brand.png';
+    if (options.rotateImage == null) options.rotateImage = 'img/loading.png';
 
     return Promise.cast()
         .then(() => new Promise<createjs.LoadQueue>(resolve => {
@@ -58,6 +58,7 @@ function load(stage: createjs.Stage, manifest: Object[], options: any = {}) {
             stage.on('tick', onTick);
 
             var loadQueue = new createjs.LoadQueue(false);
+            loadQueue.installPlugin(createjs.Sound);
             loadQueue.setMaxConnections(6);
             loadQueue.loadManifest(manifest, true, options.basePath);
             onCompleted(loadQueue, () => {
