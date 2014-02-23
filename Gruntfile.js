@@ -148,8 +148,8 @@ module.exports = function(grunt) {
     'configure-jade',
     'jade:release',
     'stylus',
-    'build-typescript',
     'exec:tsd-reinstall',
+    'build-typescript',
     'requirejs'
   ]);
   grunt.registerTask('build-typescript', [
