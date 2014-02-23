@@ -14,7 +14,7 @@
       "commit": "7469c06f428ff7275ade4b48f82d473e8e1eb9a0"
     },
     "createjs/createjs.d.ts": {
-      "commit": "b59ef1721b0ca733229caba9708947e5a003080b"
+      "commit": "2f2853bcc98696ec5a33567c19a3aac8c77d4939"
     },
     "easeljs/easeljs.d.ts": {
       "commit": "b59ef1721b0ca733229caba9708947e5a003080b"
@@ -24,6 +24,9 @@
     },
     "preloadjs/preloadjs.d.ts": {
       "commit": "b59ef1721b0ca733229caba9708947e5a003080b"
+    },
+    "soundjs/soundjs.d.ts": {
+      "commit": "2f2853bcc98696ec5a33567c19a3aac8c77d4939"
     }
   }
 }
