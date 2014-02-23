@@ -4,6 +4,9 @@
     "url": "https://github.com/progre/template-grunt"
   },
   "private": true,
+  "scripts": {
+    "test": "grunt release-build"
+  },
   "dependencies": {
   },
   "devDependencies": {
