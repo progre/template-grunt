@@ -12,7 +12,7 @@ function load(stage: createjs.Stage, manifest: Object[], options: any = {}) {
     options.centerImage = 'brand.png';
     options.rotateImage = 'loading.png';
 
-    var promise = Promise.cast()
+    return Promise.cast()
         .then(() => new Promise<createjs.LoadQueue>(resolve => {
             var preLoadQueue = new createjs.LoadQueue();
             preLoadQueue.setMaxConnections(6);
@@ -81,7 +81,6 @@ function load(stage: createjs.Stage, manifest: Object[], options: any = {}) {
             stage.removeAllChildren();
             return loadQueue;
         });
-    return promise;
 }
 
 function onCompleted(loadQueue: createjs.LoadQueue, func: Function) {
