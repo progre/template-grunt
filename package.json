@@ -21,7 +21,7 @@
     "grunt-exec": "*",
     "grunt-typescript": "*",
     "grunt-rename": "*",
-    "jit-grunt": "~0.3.2",
+    "jit-grunt": "*",
     "tsd": "*"
   }
 }
