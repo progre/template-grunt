@@ -1,22 +1,8 @@
 module.exports = function(grunt) {
   require('jit-grunt')(grunt);
 
-  var tsdExec = 'node node_modules/tsd/build/cli.js ';
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-    exec: {
-      'tsd-install': {
-        cmd: function(name) {
-          return tsdExec + 'query ' + name + ' -r -o -s -a install';
-        }
-      },
-      'tsd-reinstall': {
-        cmd: tsdExec + 'reinstall'
-      },
-      'tsd-reinstall-overwrite': {
-        cmd: tsdExec + 'reinstall -o'
-      }
-    },
     jade: {
       release: {},
       debug: {
@@ -34,6 +20,21 @@ module.exports = function(grunt) {
         },
         files: {
           'public/css/style.css': 'src/public/css/style.styl'
+        }
+      }
+    },
+    tsd: {
+      reinstall: {
+        options: {
+          command: 'reinstall',
+          config: 'tsd.json'
+        }
+      },
+      refresh: {
+        options: {
+          command: 'reinstall',
+          config: 'tsd.json',
+          latest: true
         }
       }
     },
@@ -136,21 +137,18 @@ module.exports = function(grunt) {
     'clean:dist',
     'copy:deploy'
   ]);
-  grunt.registerTask('tsd-reinstall-o', [
-    'exec:tsd-reinstall-overwrite'
-  ]);
   grunt.registerTask('debug-build', [
     'configure-jade',
     'jade:debug',
     'stylus',
-    'exec:tsd-reinstall',
+    'tsd:refresh',
     'build-typescript'
   ]);
   grunt.registerTask('release-build', [
     'configure-jade',
     'jade:release',
     'stylus',
-    'exec:tsd-reinstall',
+    'tsd:refresh',
     'build-typescript',
     'requirejs'
   ]);
