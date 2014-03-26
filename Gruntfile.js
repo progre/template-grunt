@@ -44,8 +44,8 @@ module.exports = function(grunt) {
         dest: 'src/public/',
         options: {
           module: 'amd',
-          base_path: 'src/public',
-          sourcemap: true
+          basePath: 'src/public',
+          sourceMap: true
         }
       }
     },
