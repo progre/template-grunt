@@ -1,4 +1,6 @@
 module.exports = function(grunt) {
+  require('jit-grunt')(grunt);
+
   var tsdExec = 'node node_modules/tsd/build/cli.js ';
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
@@ -116,7 +118,7 @@ module.exports = function(grunt) {
       dist: ['dist/*']
     }
   });
-  require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
+
   grunt.registerTask('default', [
     'debug-build',
     'serve'

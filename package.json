@@ -10,18 +10,18 @@
   "dependencies": {
   },
   "devDependencies": {
-    "matchdep": "*",
     "grunt": "*",
-    "grunt-exec": "*",
     "grunt-contrib-jade": "*",
     "grunt-contrib-stylus": "*",
-    "grunt-typescript": "*",
-    "grunt-rename": "*",
     "grunt-contrib-copy": "*",
     "grunt-contrib-requirejs": "*",
     "grunt-contrib-connect": "*",
     "grunt-contrib-watch": "*",
     "grunt-contrib-clean": "*",
+    "grunt-exec": "*",
+    "grunt-typescript": "*",
+    "grunt-rename": "*",
+    "jit-grunt": "~0.3.2",
     "tsd": "*"
   }
 }
